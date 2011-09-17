@@ -5,11 +5,11 @@
 #include <QWidget>
 #include <QSize>
 #include <QTimer>
-#include "wave_widget.h"
+#include "WaveWidget.h"
 #include "CfgWidgets.h"
 #include "Sensors.h"
 
-wave_widget* main_widget;
+WaveWidget* main_widget;
 WaveSim*    main_pool;
 QTimer*      pulse;
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   QWidget* main = new QWidget();
   pulse=new QTimer();
   pulse->start(50);
-  main_widget = new wave_widget(main);
+  main_widget = new WaveWidget(main);
   main_pool   = main_widget->wave_pool;
   cfg_sources* cgs = new cfg_sources(main);
 //   cfg_ws*      cwp = new cfg_ws(main);

@@ -2,15 +2,15 @@
 #include <QTimer>
 #include "WaveSim.h"
 
-#ifndef _wave_widget_h_
-#define _wave_widget_h_
+#ifndef _WaveWidget_h_
+#define _WaveWidget_h_
 
-class wave_widget : public QGLWidget
+class WaveWidget : public QGLWidget
 {
     Q_OBJECT
 public:
-  wave_widget( QWidget* parent );
-//     ~wave_widget();
+  WaveWidget( QWidget* parent );
+//     ~WaveWidget();
   WaveSim* wave_pool;
   
   float c_red, c_green, c_blue;

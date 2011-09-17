@@ -1,4 +1,4 @@
-#include "wave_widget.h"
+#include "WaveWidget.h"
 #include <QMouseEvent>
 #include <QImage>
 #include <QTimer>
@@ -24,7 +24,7 @@ current_time(void)
 }
 
 
-wave_widget::wave_widget(QWidget* parent) 
+WaveWidget::WaveWidget(QWidget* parent) 
             :QGLWidget  (parent) { 
 
   setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
@@ -54,9 +54,9 @@ wave_widget::wave_widget(QWidget* parent)
   t     = current_time();
 };
 
-// wave_widget::~wave_widget() {};
+// WaveWidget::~WaveWidget() {};
 
-void wave_widget::update() {   
+void WaveWidget::update() {   
   if (!paused) wave_pool->update();
   updateGL();
   t = current_time();
@@ -67,7 +67,7 @@ void wave_widget::update() {
   }
 }
 
-void wave_widget::initializeGL() {
+void WaveWidget::initializeGL() {
   glClearColor(0.0f,0.0f,0.0f,1.0f);
   glClearDepth(1.0f);  
   glShadeModel(GL_SMOOTH);
@@ -76,7 +76,7 @@ void wave_widget::initializeGL() {
   glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);    
 }
 
-void wave_widget::resizeGL(int w, int h) {
+void WaveWidget::resizeGL(int w, int h) {
   glViewport(0,0,w,h);    
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -86,7 +86,7 @@ void wave_widget::resizeGL(int w, int h) {
   glLoadIdentity();
 }
 
-void wave_widget::paintGL() {  
+void WaveWidget::paintGL() {  
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // clear the window
   glLoadIdentity();
   glTranslatef( 0.0, 0.0, -3.14 );
@@ -112,13 +112,13 @@ void wave_widget::paintGL() {
   frames++;
 }
 
-void wave_widget::mousePressEvent(QMouseEvent *event) {
+void WaveWidget::mousePressEvent(QMouseEvent *event) {
   last_pos = event->pos();
   start_x_rot = x_rot;
   start_y_rot = y_rot;
 }
 
-void wave_widget::mouseMoveEvent(QMouseEvent *event) {
+void WaveWidget::mouseMoveEvent(QMouseEvent *event) {
   int dx = event->x() - last_pos.x();
   int dy = event->y() - last_pos.y();
   x_rot = start_x_rot + 180 * dx/(float)width();

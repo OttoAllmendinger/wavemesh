@@ -10,9 +10,9 @@
 #include <QFileDialog>
 #include <QSlider>
 #include "WaveSim.h"
-#include "wave_widget.h"
+#include "WaveWidget.h"
 
-extern wave_widget* main_widget;
+extern WaveWidget* main_widget;
 extern WaveSim*    main_pool;
 
 class val_slider : public QSlider {
