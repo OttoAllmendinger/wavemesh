@@ -6,7 +6,7 @@
 #include <QSize>
 #include <QTimer>
 #include "wave_widget.h"
-#include "cfg_widgets.h"
+#include "CfgWidgets.h"
 #include "sensor.h"
 
 wave_widget* main_widget;

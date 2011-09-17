@@ -1,5 +1,5 @@
 #include <math.h>
-#include "cfg_widgets.h"
+#include "CfgWidgets.h"
 #define  PI 3.14159265
 
 extern QTimer* pulse;
