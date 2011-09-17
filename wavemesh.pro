@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = wavemesh
+TARGET = wavemesh.bin
 DEPENDPATH += . src
 INCLUDEPATH += . src
 QT += opengl
