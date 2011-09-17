@@ -24,10 +24,10 @@ typedef struct s_emitter  Emitter;
 typedef float s_particle::* p_value;
 // typedef struct s_coords   Coords;
 
-class wave_sim {
+class WaveSim {
   public:
-    wave_sim(int x, int y);
-    ~wave_sim();
+    WaveSim(int x, int y);
+    ~WaveSim();
     void draw();
     void dump_pool();
     void update();

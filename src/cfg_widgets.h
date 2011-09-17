@@ -9,11 +9,11 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QSlider>
-#include "wave_sim.h"
+#include "WaveSim.h"
 #include "wave_widget.h"
 
 extern wave_widget* main_widget;
-extern wave_sim*    main_pool;
+extern WaveSim*    main_pool;
 
 class val_slider : public QSlider {
   Q_OBJECT;

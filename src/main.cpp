@@ -10,7 +10,7 @@
 #include "sensor.h"
 
 wave_widget* main_widget;
-wave_sim*    main_pool;
+WaveSim*    main_pool;
 QTimer*      pulse;
 
 int main(int argc, char *argv[]) {

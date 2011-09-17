@@ -37,7 +37,7 @@ wave_widget::wave_widget(QWidget* parent)
   c_red=c_green=c_blue = 1.0;
   o_blue=0.5; 
   
-  wave_pool   = new wave_sim(128, 128);
+  wave_pool   = new WaveSim(128, 128);
   wave_pool->add_emitter(64, 64, 0.2, PI/16, 0, 0.0);
 
   p_red   = &s_particle::v;

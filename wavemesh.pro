@@ -8,9 +8,9 @@ DEPENDPATH += . src
 INCLUDEPATH += . src
 QT += opengl
 # Input
-HEADERS += src/cfg_widgets.h src/sensor.h src/wave_sim.h src/wave_widget.h
+HEADERS += src/cfg_widgets.h src/sensor.h src/WaveSim.h src/wave_widget.h
 SOURCES += src/cfg_widgets.cpp \
            src/main.cpp \
            src/sensor.cpp \
-           src/wave_sim.cpp \
+           src/WaveSim.cpp \
            src/wave_widget.cpp

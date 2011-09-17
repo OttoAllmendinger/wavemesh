@@ -1,11 +1,11 @@
-#include "wave_sim.h"
+#include "WaveSim.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #define  debug //printf
 #define PI 3.14159265
 
-wave_sim::wave_sim(int x, int y) {
+WaveSim::WaveSim(int x, int y) {
   debug("constructor\n");
   
   w = 1; c = 1; d = 1;
@@ -26,7 +26,7 @@ wave_sim::wave_sim(int x, int y) {
   pause=false;
 }
 
-wave_sim::~wave_sim() {
+WaveSim::~WaveSim() {
   int x;
   for (x=0; x<width; x++)
     free(pool[x]);
@@ -36,7 +36,7 @@ wave_sim::~wave_sim() {
   free(w_particles);
 }
 
-void wave_sim::alloc_pool(int nx, int ny) {  
+void WaveSim::alloc_pool(int nx, int ny) {  
   int x,y;
   if (pool) {
     debug("free pool %d %d\n", nx, ny);        
@@ -65,7 +65,7 @@ void wave_sim::alloc_pool(int nx, int ny) {
 //   fill_pool();
 }
 
-void wave_sim::init() {  
+void WaveSim::init() {  
   debug("init\n");  
   n_sample    = 0;
   n_w_particles=0;
@@ -84,7 +84,7 @@ void wave_sim::init() {
   
 }
 
-void wave_sim::create_mesh() {
+void WaveSim::create_mesh() {
   int x, y, n;
   
   float k = (width>height)?((float)width):((float)height);
@@ -114,7 +114,7 @@ void wave_sim::create_mesh() {
 }
 
 
-void wave_sim::connect_particles() {
+void WaveSim::connect_particles() {
   debug("connecting particles\n");
   int x,y;
   for (x=0; x<width; x++)
@@ -132,7 +132,7 @@ void wave_sim::connect_particles() {
 //   }
 }
 
-void wave_sim::create_w_particles() {
+void WaveSim::create_w_particles() {
   int x,y,n=0;
   if (w_particles) {
     debug("free w_particles\n");
@@ -152,7 +152,7 @@ void wave_sim::create_w_particles() {
   debug("%d particles\n", n_w_particles);
 }
 
-void wave_sim::set_samples(int n) {
+void WaveSim::set_samples(int n) {
   debug("alloc %d samples\n", n);
   int i,x,y;  
   for (x=0; x<width; x++)
@@ -170,13 +170,13 @@ void wave_sim::set_samples(int n) {
   n_sample=0;
 }
 
-void wave_sim::set_particle(int x, int y, float k, float d) {
+void WaveSim::set_particle(int x, int y, float k, float d) {
 //   debug("set_particle %.2f %.2f\n", k, d);
   pool[x][y].k = k;
   pool[x][y].d = d;
 }
 
-void wave_sim::add_emitter(int x, int y, float a, float w, float t, float ttl) {
+void WaveSim::add_emitter(int x, int y, float a, float w, float t, float ttl) {
   if (w_emitter) {
     w_emitter = (Emitter *)realloc(w_emitter, (n_emitter+1) * sizeof(Emitter));
   } else {
@@ -187,7 +187,7 @@ void wave_sim::add_emitter(int x, int y, float a, float w, float t, float ttl) {
   n_emitter++;
 }
 
-void wave_sim::update_emitter() {  
+void WaveSim::update_emitter() {  
   Emitter *te;
   if (override_emitter) {    
     for (int n=0; n<n_emitter; n++) {
@@ -206,7 +206,7 @@ void wave_sim::update_emitter() {
   }
 }
 
-void wave_sim::update() {
+void WaveSim::update() {
   int n, n_link, n_sub;
   Particle* tp;
   debug("update\n");
@@ -240,13 +240,13 @@ void wave_sim::update() {
     update_emitter();
 }
 
-// void wave_sim::clear
+// void WaveSim::clear
 
-void wave_sim::disturb() {
+void WaveSim::disturb() {
   pool[1+random()%(width-1)][1+random()%(height-1)].s=0.6;
 }
 
-void wave_sim::dump_pool() {
+void WaveSim::dump_pool() {
   int x, y;
   for (x=0; x<width; x++) {
     for (y=0; y<height; y++) {
@@ -257,7 +257,7 @@ void wave_sim::dump_pool() {
   printf("\n");
 }
 
-void wave_sim::resize(int new_width, int new_height) {  
+void WaveSim::resize(int new_width, int new_height) {  
   debug("resize\n");
   alloc_pool(new_width, new_height);  
   init();

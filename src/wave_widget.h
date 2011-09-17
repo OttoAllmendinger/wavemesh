@@ -1,6 +1,6 @@
 #include <QGLWidget>
 #include <QTimer>
-#include "wave_sim.h"
+#include "WaveSim.h"
 
 #ifndef _wave_widget_h_
 #define _wave_widget_h_
@@ -11,7 +11,7 @@ class wave_widget : public QGLWidget
 public:
   wave_widget( QWidget* parent );
 //     ~wave_widget();
-  wave_sim* wave_pool;
+  WaveSim* wave_pool;
   
   float c_red, c_green, c_blue;
   float o_red, o_green, o_blue;
