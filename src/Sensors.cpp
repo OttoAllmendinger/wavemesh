@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "sensor.h"
+#include "Sensors.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
 extern QTimer* pulse;
 
-wg_sensor::wg_sensor(QWidget* parent) : QWidget(parent) {
+wg_Sensors::wg_Sensors(QWidget* parent) : QWidget(parent) {
   setMinimumHeight(128);
   setMinimumWidth(128);
 
@@ -22,29 +22,29 @@ wg_sensor::wg_sensor(QWidget* parent) : QWidget(parent) {
 //   update();  
 }
 
-void wg_sensor::next_frame(){
+void wg_Sensors::next_frame(){
 //   for (int n; n<n_values, n++)
   update();
 }
 
-void wg_sensor::add_value(float* p) {
+void wg_Sensors::add_value(float* p) {
   if (src_values!=NULL) {
     printf("realloc src_values (%d)\n",n_values+1);
-    src_values=(sensor*)realloc(src_values, (n_values+1)*sizeof(sensor));
+    src_values=(Sensors*)realloc(src_values, (n_values+1)*sizeof(Sensors));
   } else {
     printf("alloc src_values\n");
-    src_values=(sensor*)malloc (sizeof(sensor));
+    src_values=(Sensors*)malloc (sizeof(Sensors));
   }  
-  src_values[n_values]=(sensor){p, NULL, 1000.0};  
+  src_values[n_values]=(Sensors){p, NULL, 1000.0};  
   n_values++;
   set_samples(n_samples);
 //   printf("%d values\n", n_values);
 }
 
-void wg_sensor::set_samples(int n) {
-  printf("set %d samples for %d sensors\n",n,n_values);
+void wg_Sensors::set_samples(int n) {
+  printf("set %d samples for %d Sensorss\n",n,n_values);
   for (int j=0; j<n_values; j++) {
-    printf("sensor %d\n",j);
+    printf("Sensors %d\n",j);
     if (src_values[j].samples==NULL) {
       src_values[j].samples=(float*)malloc(n*sizeof(float));  
       printf("alloc %d samples\n", n);
@@ -57,13 +57,13 @@ void wg_sensor::set_samples(int n) {
   printf("%d samples set\n",n);
 }
 
-void wg_sensor::paintEvent(QPaintEvent* pev){
+void wg_Sensors::paintEvent(QPaintEvent* pev){
 //   printf("paint_event\n");
   QWidget::paintEvent(pev);
 //   bitBlt( this, r.x(), r.y(), &buffer, r.x(), r.y(), r.width(), r.height() );  
   QPainter painter(this);
   painter.setPen(Qt::red);  
-  sensor* ts;
+  Sensors* ts;
   int dy=width()/2;
   for (int n=0; n<n_values; n++) {
     ts = &(src_values[n]);

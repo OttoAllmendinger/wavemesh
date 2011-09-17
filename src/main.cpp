@@ -7,7 +7,7 @@
 #include <QTimer>
 #include "wave_widget.h"
 #include "CfgWidgets.h"
-#include "sensor.h"
+#include "Sensors.h"
 
 wave_widget* main_widget;
 WaveSim*    main_pool;
@@ -29,12 +29,12 @@ int main(int argc, char *argv[]) {
   cfg_layout.addWidget(new cfg_ws(main));
   cfg_layout.addWidget(new cfg_emitter(main));
 
-//  wg_sensor* tmp_sensor = new wg_sensor(main);			// beta
+//  wg_Sensors* tmp_Sensors = new wg_Sensors(main);			// beta
 
-//  tmp_sensor->add_value( &(main_pool->pool[60][60].s) );		// too
-//  tmp_sensor->add_value( &(main_pool->pool[60][60].v) );	
+//  tmp_Sensors->add_value( &(main_pool->pool[60][60].s) );		// too
+//  tmp_Sensors->add_value( &(main_pool->pool[60][60].v) );	
 
-//  cfg_layout.addWidget(tmp_sensor);
+//  cfg_layout.addWidget(tmp_Sensors);
 
   cfg_layout.addStretch();
   gl_layout.addWidget(main_widget);

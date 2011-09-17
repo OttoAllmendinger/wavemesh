@@ -1,28 +1,28 @@
-#ifndef _sensor_h_
-#define _sensor_h_
+#ifndef _Sensors_h_
+#define _Sensors_h_
 
 #include <QWidget>
 #include <QPainter>
 #include <QTimer>
 
-struct s_sensor {
+struct s_Sensors {
   float *src;
   float *samples;
   float k;
 };
 
-typedef struct s_sensor sensor;
+typedef struct s_Sensors Sensors;
 
-class wg_sensor : public QWidget {
+class wg_Sensors : public QWidget {
   Q_OBJECT;
   public:
-    wg_sensor(QWidget*);
+    wg_Sensors(QWidget*);
     void add_value(float*);
     void set_samples(int n);
   protected:
     void paintEvent(QPaintEvent*);
   private:    
-    sensor* src_values;
+    Sensors* src_values;
     int  n_values;
     int  frame;
     int  n_samples;
