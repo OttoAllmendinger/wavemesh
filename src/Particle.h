@@ -1,7 +1,7 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-const double kTransmissionDefault = 0.25 * 0.999;
+const double kTransmissionDefault = 0.25 * 0.9;
 
 struct Particle {
   double height_;

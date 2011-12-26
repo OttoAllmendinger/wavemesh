@@ -13,6 +13,7 @@ class PoolModel {
 
     /* low performance */
     double getParticleHeight(int x, int y) const;
+    void setParticleHeight(int x, int y, double v);
 
     int getWidth() const;
     int getHeight() const;

@@ -1,7 +1,9 @@
+#include <iostream>
+
 #include "PoolModel.h"
 #include "Particle.h"
 
-Particle** makeParticles(int width, int height) {
+Particle** MakeParticles(int width, int height) {
 
   Particle** particles = new Particle*[width]();
 
@@ -13,9 +15,9 @@ Particle** makeParticles(int width, int height) {
 }
 
 
-Particle** copyParticles(Particle** particles, int width, int height) {
+Particle** CopyParticles(Particle** particles, int width, int height) {
 
-  Particle** copy_particles = makeParticles(width, height);
+  Particle** copy_particles = MakeParticles(width, height);
   
   for (int i=0; i<width; i++) {
     for (int j=0; i<height; i++) {
@@ -28,18 +30,21 @@ Particle** copyParticles(Particle** particles, int width, int height) {
 
 PoolModel::PoolModel(int width, int height)
   : width_(width), height_(height),
-    particles_(makeParticles(width_, height_)) { }
+    particles_(MakeParticles(width_, height_)) { }
 
 
 PoolModel::PoolModel(const PoolModel& poolModel)
   : width_(poolModel.width_),
     height_(poolModel.height_),
-    particles_(copyParticles(poolModel.particles_, width_, height_)) {
+    particles_(CopyParticles(poolModel.particles_, width_, height_)) {
 }
 
 
 PoolModel::~PoolModel() {
-
+  for (int x=0; x<width_; x++) {
+    delete particles_[x];
+  }
+  delete particles_;
 }
 
 void PoolModel::update() {
@@ -53,7 +58,7 @@ void PoolModel::update() {
 
       double h = p.height_;
 
-      p.velocity_ =
+      p.velocity_ +=
           (particles_[x  ][y-1].height_ - h) * p.transmission_n_ +
           (particles_[x+1][y  ].height_ - h) * p.transmission_e_ +
           (particles_[x  ][y+1].height_ - h) * p.transmission_s_ +
@@ -64,7 +69,7 @@ void PoolModel::update() {
   /* update positions */
 
   for (int x=0; x<width_; x++) {
-    for (int y=0; y<width_; y++) {
+    for (int y=0; y<height_; y++) {
       particles_[x][y].height_ += particles_[x][y].velocity_;
     }
   }
@@ -72,6 +77,10 @@ void PoolModel::update() {
 
 double PoolModel::getParticleHeight(int x, int y) const {
   return particles_[x][y].height_;
+}
+
+void PoolModel::setParticleHeight(int x, int y, double v) {
+  particles_[x][y].height_ = v;
 }
 
 int PoolModel::getWidth() const {
